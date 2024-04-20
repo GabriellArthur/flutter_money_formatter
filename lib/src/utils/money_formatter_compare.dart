@@ -1,4 +1,3 @@
-
 /// [MoneyFormatterCompare] instance.
 ///
 /// This instance is used to hold utilities in comparing values held by [FlutterMoneyFormatter]

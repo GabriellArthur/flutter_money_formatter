@@ -1,3 +1,5 @@
+## [0.0.6] - [20-04-2024]
+- bumped up dependencies
 ## [0.0.5] - [29-08-2023]
 - bumped up sdk constraints, and updated dependencies
 ## [0.0.4] - [25-01-2022]
