@@ -119,10 +119,18 @@ class MoneyFormatter {
 
     String alphas = compacted.replaceAll(numerics, '');
 
+    num parsedNumerics;
+    try {
+      parsedNumerics = num.parse(numerics);
+    } catch (e) {
+      print('Error parsing numerics: $e');
+      return 'Error';
+    }
+
     String reformat = NumberFormat.currency(
             symbol: '',
             decimalDigits: numerics.indexOf('.') == -1 ? 0 : this.settings?.fractionDigits)
-        .format(num.parse(numerics));
+        .format(parsedNumerics);
 
     return '$reformat$alphas';
   }
