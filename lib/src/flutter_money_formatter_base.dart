@@ -110,19 +110,23 @@ class MoneyFormatter {
   /// Returns compact format number without currency symbol
   String get _compactNonSymbol {
     String compacted = _utilities.baseCompact.format(amount);
+    print('compacted $compacted');
     String numerics = RegExp(r'(\d+\.\d+)|(\d+)')
         .allMatches(compacted)
         .map((_) => _.group(0))
         .toString()
         .replaceAll('(', '')
         .replaceAll(')', '');
-
+    print('numerics $numerics');
     String alphas = compacted.replaceAll(numerics, '');
+    print('alphas $alphas');
 
     String reformat = NumberFormat.currency(
             symbol: '',
             decimalDigits: numerics.indexOf('.') == -1 ? 0 : this.settings?.fractionDigits)
-        .format(num.tryParse(numerics) ?? 0);
+        .format(num.tryParse(numerics) ?? num.parse(amount.toString()));
+
+    print('reformat $reformat');
 
     return '$reformat$alphas';
   }
