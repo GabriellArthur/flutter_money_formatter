@@ -1,9 +1,8 @@
 import 'package:intl/intl.dart';
-
 import 'package:money_formatter/src/utils/compact_format_type.dart';
-import 'package:money_formatter/src/utils/money_formatter_settings.dart';
-import 'package:money_formatter/src/utils/money_formatter_output.dart';
 import 'package:money_formatter/src/utils/money_formatter_compare.dart';
+import 'package:money_formatter/src/utils/money_formatter_output.dart';
+import 'package:money_formatter/src/utils/money_formatter_settings.dart';
 
 part 'utils/utilities.dart';
 
@@ -42,22 +41,18 @@ class MoneyFormatter {
     return MoneyFormatterOutput(
         nonSymbol: _urs,
         symbolOnLeft: '${this.settings?.symbol ?? ''}${_utilities.spacer}$_urs',
-        symbolOnRight:
-            '$_urs${_utilities.spacer}${this.settings?.symbol ?? ''}',
+        symbolOnRight: '$_urs${_utilities.spacer}${this.settings?.symbol ?? ''}',
         compactNonSymbol: _compactNonSymbol,
-        compactSymbolOnLeft:
-            '${this.settings?.symbol ?? ''}${_utilities.spacer}$_compactNonSymbol',
+        compactSymbolOnLeft: '${this.settings?.symbol ?? ''}${_utilities.spacer}$_compactNonSymbol',
         compactSymbolOnRight:
             '$_compactNonSymbol${_utilities.spacer}${this.settings?.symbol ?? ''}',
-        fractionDigitsOnly:
-            _urs.substring((-1 == _decSepCharPos ? 0 : _decSepCharPos + 1)),
-        withoutFractionDigits: _urs.substring(
-            0, -1 == _decSepCharPos ? _urs.length - 1 : _decSepCharPos));
+        fractionDigitsOnly: _urs.substring((-1 == _decSepCharPos ? 0 : _decSepCharPos + 1)),
+        withoutFractionDigits:
+            _urs.substring(0, -1 == _decSepCharPos ? _urs.length - 1 : _decSepCharPos));
   }
 
   /// returns FlutterMoneyFormatter after calculating amount.
-  MoneyFormatter fastCalc(
-      {required FastCalcType type, required double amount}) {
+  MoneyFormatter fastCalc({required FastCalcType type, required double amount}) {
     switch (type) {
       case FastCalcType.addition:
         this.amount += amount;
@@ -105,8 +100,7 @@ class MoneyFormatter {
         symbol: symbol ?? ts?.symbol,
         thousandSeparator: thousandSeparator ?? ts?.thousandSeparator,
         decimalSeparator: decimalSeparator ?? ts?.decimalSeparator,
-        symbolAndNumberSeparator:
-            symbolAndNumberSeparator ?? ts?.symbolAndNumberSeparator,
+        symbolAndNumberSeparator: symbolAndNumberSeparator ?? ts?.symbolAndNumberSeparator,
         fractionDigits: fractionDigits ?? ts?.fractionDigits,
         compactFormatType: compactFormatType ?? ts?.compactFormatType);
 
@@ -127,8 +121,7 @@ class MoneyFormatter {
 
     String reformat = NumberFormat.currency(
             symbol: '',
-            decimalDigits:
-                numerics.indexOf('.') == -1 ? 0 : this.settings?.fractionDigits)
+            decimalDigits: numerics.indexOf('.') == -1 ? 0 : this.settings?.fractionDigits)
         .format(num.parse(numerics));
 
     return '$reformat$alphas';
